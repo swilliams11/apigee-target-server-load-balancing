@@ -46,4 +46,4 @@ The most common approach to load balancing backends is to use a robust load bala
 
 
 ## GKE Multiregion Setup
-Follow the [gke-multregion-setup](/gke-multregion-setup) to configure a GKE cluster across multiple regions for testing. This will setup two GKE clusters in us-central and us-east with a sample Go app deployed to both regions. Two services will be deployed with two separate IP addresses.  Those two IP addresses can be used in Apigee Edge as target servers.  
+Follow the [gke-multregion-setup](gke-multregion-setup) to configure a GKE cluster across multiple regions for testing. This will setup two GKE clusters in us-central and us-east with a sample Go app deployed to both regions. Two services will be deployed with two separate IP addresses.  Those two IP addresses can be used in Apigee Edge as target servers.  
