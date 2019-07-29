@@ -1,9 +1,9 @@
-#gke-multregion-setup
+# gke-multregion-setup
 
 ## Summary
 This documentation describes how to deploy two GKE clusters in GCP - one in us-central and one in us-east.
 
-## Deploy clusters
+## Deploy GKE clusters
 ### Deploy clusters with script
 ```
 chmod 777 deploy-clusters-and-app.sh
