@@ -39,6 +39,7 @@ This can be achieved if you have Apigee deployed in multiple regions and you hav
 The most common approach to load balancing backends is to use a robust load balancer (GCP LBs, Akamai, F5, Nginx, etc.) "behind" Apigee and provide Apigee a single target endpoint.  There are multiple load balancers available in GCP to load balance across GKE clusters.  The options below are for GCP customers that use GKE.
 
 #### HTTPS load balancer with [multi-cluster ingress](https://cloud.google.com/kubernetes-engine/docs/how-to/multi-cluster-ingress)
+* [mult-cluster-ingress example](gke-multi-cluster-ingress)
 
 #### [Container native load balancing](https://cloud.google.com/kubernetes-engine/docs/how-to/container-native-load-balancing) with the HTTPS load balancer
 
