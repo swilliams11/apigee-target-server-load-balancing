@@ -22,6 +22,7 @@ include:
 
 ## Build the Go Docker image
 The easiest way to build and deploy the Go application is to use the `deploy-app.sh` in the `app` folder.  
+Alternatively, you can build the GKE clusters and deploy the app by executing `deploy-clusters-and-app.sh` in the [`gke-multiregion-setup`](../gke-multiregion-setup) folder.
 
 1. Build the Docker image.
 ```
