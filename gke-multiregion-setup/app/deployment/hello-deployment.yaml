@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apigee-hello-deployment
+spec:
+  selector:
+    matchLabels:
+      app: apigee-hello-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: apigee-hello-app
+    spec:
+      containers:
+      - name: apigee-hello-app
+        image: gcr.io/$GCP_PROJECT/hello-app:v1.0
+        env:
+        - name: REGION
+          value: "$REGION"

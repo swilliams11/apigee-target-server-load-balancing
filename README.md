@@ -43,3 +43,7 @@ The most common approach to load balancing backends is to use a robust load bala
 #### [Container native load balancing](https://cloud.google.com/kubernetes-engine/docs/how-to/container-native-load-balancing) with the HTTPS load balancer
 
 #### [Traffic Director](https://cloud.google.com/traffic-director/docs/set-up-gke-pods)
+
+
+## GKE Multiregion Setup
+Follow the [gke-multregion-setup](/gke-multregion-setup) to configure a GKE cluster across multiple regions for testing.
