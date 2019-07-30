@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="5" name="kostictest">
+    <Basepaths>/multi-region-backends</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1563576181434</CreatedAt>
+    <CreatedBy></CreatedBy>
+    <Description>Includes Verify access token policy</Description>
+    <DisplayName>multi-region-backend</DisplayName>
+    <LastModifiedAt>1563819340019</LastModifiedAt>
+    <LastModifiedBy></LastModifiedBy>
+    <ManifestVersion></ManifestVersion>
+    <Policies>
+        <Policy>OAuth-v20-1</Policy>
+        <Policy>Verify-API-Key</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>central</TargetEndpoint>
+        <TargetEndpoint>east</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>
