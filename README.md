@@ -10,6 +10,7 @@ This repository includes some alternatives to the Apigee load balancer.
 
 * ANTI-PATTERN: Use a load balancer in front of Apigee Edge, which load balances across Apigee regions.
   This is an anti-pattern and a custom solution and it requires help from our support team.  We only implement this in special circumstances.  Since a third-party application is load balancing across regions, then a customer is relying on that load balancer in front of Apigee to failover across regions as opposed to relying on the Apigee infrastructure for cross-region failover.
+  * The example is shown in the [load-balancer-in-front-of-apigee](load-balancer-in-front-of-apigee) folder.
 
 ### GCP Load Balancing Options
 There are severals GCP load balancers, but I'll demonstrate 3 to load balance across GKE clusters.
