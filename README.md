@@ -13,7 +13,7 @@ I documented two anti-patterns, alternatives to the Apigee load balancer.
 
 2. ANTI-PATTERN: Use a load balancer in front of Apigee Edge, which load balances across Apigee regions.
   This is an anti-pattern and it is also a custom solution that requires help from our support team.  We only implement this in **special circumstances**.  If you use a third-party application to load balance traffic across regions, then you are relying on that load balancer in front of Apigee to failover across regions as opposed to relying on the Apigee infrastructure for cross-region failover.  Apigee cannot provide a 99.99% SLA in this case because you are not relying on Apigee infrastructure to perform cross-region failover.  It is as if you are using Apigee within a single region, which has a 99.9% SLA.
-  * An example is shown in the [load-balancer-in-front-of-apigee](load-balancer-in-front-of-apigee) folder.
+  * A sample proxy with route rules and two target endpoints is shown in the  [load-balancer-in-front-of-apigee](load-balancer-in-front-of-apigee) folder.
 
 ### Google Cloud Platform Load Balancing Options
 There are severals GCP load balancers, but I'll demonstrate 3 to load balance across GKE clusters.
@@ -33,6 +33,7 @@ There is one surprise, however. This is the expected behavior and was designed t
 ### Apigee ANTI-PATTERNS
 #### Policy Based Approach to Load Balancing in Apigee Edge
 This is an anti-pattern and is described here as such.
+TODO - Provide an example
 
 #### Load Balancer in front of Apigee Regions
 **This is an anti-pattern and is only implemented only under very limited circumstances.**

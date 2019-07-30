@@ -5,8 +5,15 @@ This is an anti-pattern, custom solution and only implemented in special circums
 
 This solution does not require any changes to Apigee's infrastructure and API Key validation and access token validation continue to function as before.  
 
-## Implementation 
-There are two changes that should be made to the proxy.
+## Apigee Support Implementation
+This implementation requires our support team to complete the following actions.
+1. Modify all existing Virtual Hosts (i.e. secure) for all organizations and environments to include a host alias for each region in which Apigee is hosted.
+   * i.e. org-env-east.apigee.net, org-env-west.apigee.net
+2. Register these new aliases so that they are publicly available.  
+3. Notify customer of changes to Virtual Hosts.  
+
+## Customer Implementation
+There are two changes that must be made to the proxy.
 
 1. Create new target endpoints for all regions where Apigee is deployed.  For example, if you have Apigee deployed in two regions (us-east and us-central), then create two target endpoints in your proxy - one for us-central and one for us-east.
 
@@ -73,6 +80,8 @@ There are two changes that should be made to the proxy.
    </RouteRule>
 </ProxyEndpoint>
 ```
+
+3. Update your your load balancer to route traffic between the aliases that were provided by Apigee Support.  
 
 ## Apigee Route Rules
 Take the following items into consideration.
