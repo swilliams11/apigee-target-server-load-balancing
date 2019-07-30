@@ -20,7 +20,55 @@ https://cloud.google.com/kubernetes-engine/docs/how-to/multi-cluster-ingress
 https://kubernetes.io/docs/concepts/services-networking/ingress/
 
 ## Setup
-### Firewall
+### Automated Setup
+#### Install kubemci
+
+##### LINUX - use this from cloud shell
+```
+curl -o kubemci https://storage.googleapis.com/kubemci-release/release/latest/bin/linux/amd64/kubemci
+```
+
+##### MAC
+```
+curl -o kubemci https://storage.googleapis.com/kubemci-release/release/latest/bin/darwin/amd64/kubemci
+```
+
+##### Make the downloaded file executable.
+```
+chmod +x ./kubemci
+```
+
+Install in `usr/bin` which will make it executable anywhere on the command line.
+```
+cp kubemci /usr/local/bin
+```
+
+#### Deploy new service, and mci
+```
+./deploy-all.sh
+```
+
+#### Get the status of the multi-cluster-ingress
+1. mci status
+Execute one of the following below depending on where you want to check the status of the mci.  
+```
+gcloud container clusters get-credentials gke-cluster-central --zone us-central1-a
+gcloud container clusters get-credentials gke-cluster-east --zone us-east1-b
+```
+
+List all mci's for a particular project
+```
+kubemci list --gcp-project=$(gcloud config get-value project)
+```
+
+Get the status of a specific mci.  
+```
+kubemci get-status mci-ingress --gcp-project=$(gcloud config get-value project)
+```
+
+### Manual Setup
+Complete all the steps below.
+#### Firewall
 You must configure a firewall rule to allow the following ranges for the GCP health checks to succeed.  
 `130.211.0.0/22` and `35.191.0.0/16`.
 
@@ -34,19 +82,19 @@ gcloud compute firewall-rules create fw-allow-health-checks \
     --rules tcp
 ```
 
-### Install kubemci
+#### Install kubemci
 
-#### LINUX - use this from cloud shell
+##### LINUX - use this from cloud shell
 ```
 curl -o kubemci https://storage.googleapis.com/kubemci-release/release/latest/bin/linux/amd64/kubemci
 ```
 
-#### MAC
+##### MAC
 ```
 curl -o kubemci https://storage.googleapis.com/kubemci-release/release/latest/bin/darwin/amd64/kubemci
 ```
 
-#### Make the downloaded file executable.
+##### Make the downloaded file executable.
 ```
 chmod +x ./kubemci
 ```
@@ -56,14 +104,14 @@ Install in `usr/bin` which will make it executable anywhere on the command line.
 cp kubemci /usr/bin
 ```
 
-### Setup KUBECONFIG
+#### Setup KUBECONFIG
 ```
 export GCP_PROJECT=$(gcloud config get-value project)
 KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=us-central1-a gke-cluster-uscentral
 KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=us-east1-b gke-cluster-useast
 ```
 
-### Deploy the service  
+#### Deploy the service  
 ```
 gcloud container clusters get-credentials gke-cluster-central --zone us-central1-a
 kubectl create -f app
@@ -72,22 +120,22 @@ gcloud container clusters get-credentials gke-cluster-east --zone us-east1-b
 kubectl create -f app
 ```
 
-### Reserve static IP address
+#### Reserve static IP address
 ```
 gcloud compute addresses create --global global-lb-mci-ip
 ```
 
-### Deploy the multi-cluster-ingress
+#### Deploy the multi-cluster-ingress
 ```
 kubemci create mci-ingress --ingress=hello-ingress-mci.yaml --kubeconfig=mcikubeconfig
 ```
 
-### Get the status of the multi-cluster-ingress
+#### Get the status of the multi-cluster-ingress
 ```
 ./kubemci get-status mci-ingress --gcp-project=$GCP_PROJECT
 ```
 
-### Update the Load Balancer Healthcheck
+#### Update the Load Balancer Healthcheck
 
 Change the health check so that it is more responsive.  
 ```
@@ -102,7 +150,7 @@ gcloud compute health-checks update http mci1-hc-30061--mci-ingress \
 
 
 ## DEMO
-Prereqs
+**Prereqs**
 Update the mci load balancer as shown above.  
 
 
@@ -167,6 +215,7 @@ kubectl --context="gke_apigee-target-server-lb-sw_us-central1_central-cluster" c
 ```
 
 ### Reset health check to default values
+You can reset the health check values to the default configuration.  
 ```
 gcloud compute health-checks update http mci1-hc-30061--mci-ingress \
     --description='Health check for service {"kubernetes.io/service-name":"default/service-foo","kubernetes.io/service-port":"80"} as part of kubernetes multicluster loadbalancer mci-ingress' \
