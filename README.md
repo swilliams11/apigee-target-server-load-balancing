@@ -23,7 +23,7 @@ The Apigee load balancer uses a network level check (TCP) to determine if it can
 
 If you want to ensure that the load balancer removes a target server from rotation, then configure either a TCP health monitor or an HTTP health monitor and also set the MaxFailures count to be greater than zero.  This is where the load balancer behavior gets interesting.  Assume that you have a load balancer configured with an HTTP health check and MaxFailures set to 5.  Also assume that the target server is down, meaning that it returns 5XX errors consistently.  Apigee's load balancer will attempt to establish a connection to the target server and it will succeed, so it RESETS the MaxFailure counter, but the HTTP monitor will send a health check request and fail, so it INCREASES the MaxFailure counter.  This is the fundamental issue between the load balancer and the health check and it causes some unexpected behavior under load and delays when a server should be removed from rotation.  
 
-There is one surprise, this is the expected behavior and was designed this way.  Apigee has a feature request to change the behavior on the load balancer so that it align with industry standards (i.e. Envoy).
+There is one surprise, however. This is the expected behavior and was designed this way.  Apigee has a feature request to change the behavior on the load balancer so that it align with industry standards (i.e. Envoy).
 
 ## Load Balancing Approaches
 ### ANTI-PATTERNS
