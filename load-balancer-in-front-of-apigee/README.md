@@ -1,7 +1,7 @@
 # Load Balance in front of Apigee
 
 ## Summary
-This is an anti-pattern, custom solution and only implemented in special circumstances.  This folder shows how to configure a proxy after support has updated an existing virtual host with two new aliases, one for region1 and one for region2.  Once the virtual host is updated, then you can update your proxy as shown in the example proxy.  
+This is an anti-pattern, custom solution and only implemented in special circumstances.  This folder shows how to configure a proxy after support has updated an existing virtual host with new aliases (i.e one for region1 and one for region2) within the same virtual host.  Once the virtual host is updated, then you can update your proxy as shown in the example proxy.  
 
 This solution does not require any changes to Apigee's infrastructure and API Key validation and access token validation continue to function as before.  
 
