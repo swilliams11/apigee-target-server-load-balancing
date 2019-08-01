@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apigee-hello-neg-demo-app
+  labels:
+    run: apigee-hello-neg-demo-app
+spec:
+  minReadySeconds: 60
+  selector:
+    matchLabels:
+      run: apigee-hello-neg-demo-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: apigee-hello-neg-demo-app
+    spec:
+      containers:
+      - name: apigee-hello-neg-demo-app
+        image: gcr.io/$GCP_PROJECT/hello-app:v1.0
+        env:
+        - name: REGION
+          value: "$REGION"
+      terminationGracePeriodSeconds: 60

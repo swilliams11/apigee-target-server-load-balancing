@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apigee-hello-app-neg-svc
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}' # Creates an NEG after an Ingress is created
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+    #name: http
+  selector:
+    run: apigee-hello-neg-demo-app
+  type: NodePort
