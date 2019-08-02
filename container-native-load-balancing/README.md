@@ -4,7 +4,8 @@
 Container native load balancing allows an HTTPS load balancer to distribute traffic directly to pods running in GKE clusters as opposed to used instance groups.  Please read the Google documentation links below.
 
 It turns out this is not a feasible option since it creates a new HTTPS global load balancer for each region. However, the goal is to have a single GLB for all GKE clusters.  I also attempted to modify the existing HTTPS LB with the backend created from the other region, but it does not behave as expected.  
-* If you add a backend service from another region then you also have to specify the host and route, which is where the problem arises.  
+* If you add a backend service from another region then you also have to specify the host and route, which is where the problem arises. You have to specify a different route for each backend service.  
+  * i.e. `/` maps to `us-east-be` and `/*` maps to `us-central-be` 
 * However, it does handle load balancing across zones and keeps the NEG updated if you scale your service up or down.  
 
 ## Google documentation
