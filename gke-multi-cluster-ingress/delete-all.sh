@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # delete the mci components
-kubemci delete mci-ingress --ingress=app/hello-ingress-mci.yaml --kubeconfig=mcikubeconfig
+kubemci delete mci-ingress --ingress=app/hello-ingress-mci.yaml --kubeconfig=$HOME/mcikubeconfig
 
 # delete the services
 gcloud container clusters get-credentials gke-cluster-uscentral --zone us-central1-a

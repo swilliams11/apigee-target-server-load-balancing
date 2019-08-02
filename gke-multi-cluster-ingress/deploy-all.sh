@@ -11,8 +11,8 @@ gcloud compute firewall-rules create fw-allow-health-checks \
 
 # setup kubeconfig
 export GCP_PROJECT=$(gcloud config get-value project)
-KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=us-central1-a gke-cluster-uscentral
-KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=us-east1-b gke-cluster-useast
+KUBECONFIG=$HOME/mcikubeconfig gcloud container clusters get-credentials --zone=us-central1-a gke-cluster-uscentral
+KUBECONFIG=$HOME/mcikubeconfig gcloud container clusters get-credentials --zone=us-east1-b gke-cluster-useast
 
 # create the mci and service in both regions
 gcloud container clusters get-credentials gke-cluster-uscentral --zone us-central1-a
@@ -25,7 +25,7 @@ kubectl create -f app/hello-service-mci.yaml
 gcloud compute addresses create --global global-lb-mci-ip
 
 # create the https load balancer, healthcheck, instance groups etc.
-kubemci create mci-ingress --ingress=app/hello-ingress-mci.yaml --kubeconfig=~/mcikubeconfig
+kubemci create mci-ingress --ingress=app/hello-ingress-mci.yaml --kubeconfig=$HOME/mcikubeconfig
 
 ## update the load balancer from the default configuration.
 gcloud compute health-checks update http mci1-hc-30061--mci-ingress \
