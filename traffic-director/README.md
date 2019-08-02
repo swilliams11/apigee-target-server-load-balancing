@@ -3,11 +3,10 @@
 ## Summary
 This README documents how to setup Traffic Director to load balance traffic between GKE clusters in multiple regions.  It relies on Network Endpoint Groups, which are currently in Beta release.
 
-This will not work either since our documentation states the following:
+I don't believe that this approach will work to load balance public traffic across GKE clusters in separate regions.  Our documentation states the following:
 * "You can only connect services running in GCP using Traffic Director."
-* "You can only configure GCP endpoints with Traffic Director in this release. We do not support endpoints on-prem or in another cloud."
 
-Therefore, you cannot load balance public traffic.  Presumably, you could create a Global Load Balancer (HTTPS) and route all traffic to a forward proxy, which is managed by the Traffic Director.  
+Therefore, you cannot load balance public traffic.  No public IP address is assigned to the Traffic Director.  
 
 ## Links
 * [Preparing for traffic director setup](https://cloud.google.com/traffic-director/docs/setting-up-traffic-director)
