@@ -51,7 +51,9 @@ The most common approach to load balancing backends is to use a robust load bala
 * I tried this option in this folder, but it does not load balance traffic across regions.  Review the README for more details.
 
 #### [Traffic Director](https://cloud.google.com/traffic-director/docs/set-up-gke-pods)
-* TODO
+* [Traffic Directory example](traffic-director)
+* I tried this option in this folder, but it has some limitations with respect to external traffic. Our current docs state that it can only be used to connect services running in GCP.  
+* TODO - determine if you can use a Global Loadbalancer to allow external traffic to services deployed in GCP K8S. 
 
 ## GKE Multiregion Setup
 Follow the [gke-multregion-setup](gke-multiregion-setup) to configure a GKE cluster across multiple regions for testing. This will setup two GKE clusters in us-central and us-east with a sample Go app deployed to both regions. Two services will be deployed with two separate IP addresses.  Those two IP addresses can be used in Apigee Edge as target servers.  
