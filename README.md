@@ -48,7 +48,7 @@ The most common approach to load balancing backends is to use a robust load bala
 
 #### [Container native load balancing](https://cloud.google.com/kubernetes-engine/docs/how-to/container-native-load-balancing) with the HTTPS load balancer
 * [Container native load balancing example](container-native-load-balancing)
-* I tried this option in this folder, but it does behave as expected.  Review the README for more details.  
+* I tried this option in this folder, but it does not load balance traffic across regions.  Review the README for more details.
 
 #### [Traffic Director](https://cloud.google.com/traffic-director/docs/set-up-gke-pods)
 * TODO

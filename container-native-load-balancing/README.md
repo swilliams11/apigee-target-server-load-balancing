@@ -1,11 +1,15 @@
 # Container Native Load Balancing
 
 ## Summary
-Container native load balancing allows an HTTPS load balancer to distribute traffic directly to pods running in GKE clusters as opposed to used instance groups.  Please read the Google documentation [here](https://cloud.google.com/kubernetes-engine/docs/how-to/container-native-load-balancing).
+Container native load balancing allows an HTTPS load balancer to distribute traffic directly to pods running in GKE clusters as opposed to used instance groups.  Please read the Google documentation links below.
 
 It turns out this is not a feasible option since it creates a new HTTPS global load balancer for each region. However, the goal is to have a single GLB for all GKE clusters.  I also attempted to modify the existing HTTPS LB with the backend created from the other region, but it does not behave as expected.  
 * If you add a backend service from another region then you also have to specify the host and route, which is where the problem arises.  
 * However, it does handle load balancing across zones and keeps the NEG updated if you scale your service up or down.  
+
+## Google documentation
+* [Container Native Load Balancing](https://cloud.google.com/kubernetes-engine/docs/how-to/container-native-load-balancing)
+* [Network Endpoint Groups](https://cloud.google.com/kubernetes-engine/docs/how-to/container-native-load-balancing)
 
 ## Deployment
 
@@ -115,7 +119,14 @@ kubectl get ingress apigee-hello-neg-ingress
 ```
 
 ### Delete the components
-#### 1. Delete the ingress
+#### Delete the cluster
+```
+gcloud container clusters delete  neg-demo-cluster-uscentral --region=us-central1-a
+
+gcloud container clusters delete neg-demo-cluster-useast --region=us-east1-b
+```
+
+#### Delete the ingress
 ```
 export ZONE="us-central1-a"
 export CLUSTER="neg-demo-cluster-uscentral"
