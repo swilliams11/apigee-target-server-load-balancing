@@ -15,17 +15,17 @@ KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=us-c
 KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=us-east1-b gke-cluster-useast
 
 # create the mci and service in both regions
-gcloud container clusters get-credentials gke-cluster-central --zone us-central1-a
-kubectl create -f app
+gcloud container clusters get-credentials gke-cluster-uscentral --zone us-central1-a
+kubectl create -f app/hello-service-mci.yaml
 
-gcloud container clusters get-credentials gke-cluster-east --zone us-east1-b
-kubectl create -f app
+gcloud container clusters get-credentials gke-cluster-useast --zone us-east1-b
+kubectl create -f app/hello-service-mci.yaml
 
 # get a static ip address
 gcloud compute addresses create --global global-lb-mci-ip
 
 # create the https load balancer, healthcheck, instance groups etc.
-kubemci create mci-ingress --ingress=app/hello-ingress-mci.yaml --kubeconfig=mcikubeconfig
+kubemci create mci-ingress --ingress=app/hello-ingress-mci.yaml --kubeconfig=~/mcikubeconfig
 
 ## update the load balancer from the default configuration.
 gcloud compute health-checks update http mci1-hc-30061--mci-ingress \

@@ -46,6 +46,7 @@ The most common approach to load balancing backends is to use a robust load bala
 #### HTTPS load balancer with [multi-cluster ingress](https://cloud.google.com/kubernetes-engine/docs/how-to/multi-cluster-ingress)
 * [mult-cluster-ingress example](gke-multi-cluster-ingress)
 * This is the only option where I was able to load balance external traffic across multiple GKE clusters in two regions.
+* It correctly failsover and failsback when the service is completely down and when the service is up but always returns non 2xx HTTP status codes. 
 
 #### [Container native load balancing](https://cloud.google.com/kubernetes-engine/docs/how-to/container-native-load-balancing) with the HTTPS load balancer
 * [Container native load balancing example](container-native-load-balancing)

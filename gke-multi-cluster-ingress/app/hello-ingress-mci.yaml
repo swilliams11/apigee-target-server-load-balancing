@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: apigee-hello-ingress
+  name: apigee-hello-ingress-mci
   labels:
     app: apigee-hello-app-mci
   annotations:
@@ -9,5 +9,5 @@ metadata:
     kubernetes.io/ingress.class: gce-multi-cluster
 spec:
   backend:
-    serviceName: service-foo
+    serviceName: apigee-hello-service-mci
     servicePort: 80

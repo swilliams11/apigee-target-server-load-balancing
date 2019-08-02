@@ -14,7 +14,7 @@ This directory contains:
 - `Dockerfile` is used to build the Docker image for the application.
 
 
-This example is used in many official/unofficial tutorials, some of them
+This example is uses many tutorials, some of them
 include:
 - [Kubernetes Engine Quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart)
 - [Kubernetes Engine - Deploying a containerized web application](https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app) tutorial

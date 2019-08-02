@@ -52,6 +52,7 @@ func main() {
 func hello(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Serving request: %s", r.URL.Path)
 	host, _ := os.Hostname()
+  //w.WriteHeader(http.StatusInternalServerError) //added for v2 to demo service up but returns 500 errors
 	fmt.Fprintf(w, "Hello, world from %s!\n", region)
 	fmt.Fprintf(w, "Version: 1.0.0\n")
 	fmt.Fprintf(w, "Hostname: %s\n", host)

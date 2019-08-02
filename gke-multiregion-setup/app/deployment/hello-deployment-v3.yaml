@@ -1,0 +1,20 @@
+apiVersion: apps/v1 # this is an image that always returns a 500 error.
+kind: Deployment
+metadata:
+  name: apigee-hello-deployment
+spec:
+  selector:
+    matchLabels:
+      app: apigee-hello-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: apigee-hello-app
+    spec:
+      containers:
+      - name: apigee-hello-app
+        image: gcr.io/$GCP_PROJECT/gke-app:v1 #always returns 500 error?
+        env:
+        - name: REGION
+          value: "$REGION"

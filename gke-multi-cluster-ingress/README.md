@@ -52,8 +52,8 @@ cp kubemci /usr/local/bin
 1. mci status
 Execute one of the following below depending on where you want to check the status of the mci.  
 ```
-gcloud container clusters get-credentials gke-cluster-central --zone us-central1-a
-gcloud container clusters get-credentials gke-cluster-east --zone us-east1-b
+gcloud container clusters get-credentials gke-cluster-uscentral --zone us-central1-a
+gcloud container clusters get-credentials gke-cluster-useast --zone us-east1-b
 ```
 
 List all mci's for a particular project
@@ -113,11 +113,11 @@ KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=us-e
 
 #### Deploy the service  
 ```
-gcloud container clusters get-credentials gke-cluster-central --zone us-central1-a
-kubectl create -f app
+gcloud container clusters get-credentials gke-cluster-uscentral --zone us-central1-a
+kubectl create -f app/hello-service-mci.yaml
 
-gcloud container clusters get-credentials gke-cluster-east --zone us-east1-b
-kubectl create -f app
+gcloud container clusters get-credentials gke-cluster-useast --zone us-east1-b
+kubectl create -f app/hello-service-mci.yaml
 ```
 
 #### Reserve static IP address
@@ -127,8 +127,15 @@ gcloud compute addresses create --global global-lb-mci-ip
 
 #### Deploy the multi-cluster-ingress
 ```
-kubemci create mci-ingress --ingress=hello-ingress-mci.yaml --kubeconfig=mcikubeconfig
+kubemci create mci-ingress --ingress=app/hello-ingress-mci.yaml --kubeconfig=~/mcikubeconfig --force
 ```
+
+If you receive an error, as shown below then
+```
+* Error getting kubectl client interface for context : stat ~/mcikubeconfig: no such file or directory
+```
+
+Then use the absolute path to your `mcikubeconfig` file.
 
 #### Get the status of the multi-cluster-ingress
 ```
@@ -164,7 +171,7 @@ loadtest -n 500 -c 1 --rps 1 http://IP
 
 Switch to GKE central context
 ```
-gcloud container clusters get-credentials gke-cluster-central --zone us-central1-a
+gcloud container clusters get-credentials gke-cluster-uscentral --zone us-central1-a
 ```
 
 Scale central cluster to zero

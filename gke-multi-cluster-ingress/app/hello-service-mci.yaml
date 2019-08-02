@@ -13,4 +13,4 @@ spec:
     nodePort: 30061
   selector:
     app: apigee-hello-app
-  type: NodePort"
+  type: NodePort
