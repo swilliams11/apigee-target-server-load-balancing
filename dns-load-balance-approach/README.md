@@ -6,4 +6,4 @@ In the event a customer is not able to use any of the GCP products listed in thi
 ### DNS Load Balancing approaches
 
 ### AWS Route53
-This example use AWS Route53 to load balance services deployed to two regions with public IPs assigned to the Nginx ingress.  
+This example use [AWS Route53](aws-route53) to load balance services deployed to two regions with public IPs assigned to the Nginx ingress.  
