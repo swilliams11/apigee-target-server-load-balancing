@@ -5,6 +5,16 @@ This is an anti-pattern, custom solution and only implemented in special circums
 
 This solution does not require any changes to Apigee's infrastructure and API Key validation and access token validation continue to function as before.  
 
+## Items to Consider
+There are some additional items that you should consider when implementing this approach.
+* There is a reduced SLA, since you are not relying on Apigee's infrastructure failover capabilities between regions.
+* Some load balancers only allow you to configure one health check per domain; therefore, you will need to setup a health check proxy for the load balancer.
+  * The health check proxy would send asynchronous requests (JavaScript or Java callout) to the other Apigee proxies to confirm they are functioning correctly.
+    * If speed and latency are critical, then use a Java callout instead.
+  * Each Apigee proxy needs a separate health check **proxy endpoint** to accept requests.
+  * Each health check resource should have some rate limiting and also be protected via API Key validation.  
+  * Do not expose your health check resources in your products; These resources should be exposed in a single health check product that is available to the load balancer only.
+
 ## Apigee Support Implementation
 This implementation requires our support team to complete the following actions.
 1. Modify all existing Virtual Hosts (i.e. secure) for all organizations and environments to include a host alias for each region in which Apigee is hosted.
