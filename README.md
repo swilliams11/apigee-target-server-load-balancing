@@ -46,7 +46,7 @@ The most common approach to load balancing backends is to use a robust load bala
 #### HTTPS load balancer with [multi-cluster ingress](https://cloud.google.com/kubernetes-engine/docs/how-to/multi-cluster-ingress)
 * [mult-cluster-ingress example](gke-multi-cluster-ingress)
 * This is the only option where I was able to load balance external traffic across multiple GKE clusters in two regions.
-* It correctly failsover and failsback when the service is completely down and when the service is up but always returns non 2xx HTTP status codes. 
+* It correctly failsover and failsback when the service is completely down and when the service is up but always returns non 2xx HTTP status codes.
 
 #### [Container native load balancing](https://cloud.google.com/kubernetes-engine/docs/how-to/container-native-load-balancing) with the HTTPS load balancer
 * [Container native load balancing example](container-native-load-balancing)
@@ -56,6 +56,9 @@ The most common approach to load balancing backends is to use a robust load bala
 * [Traffic Directory example](traffic-director)
 * I tried this option in this folder, but it has some limitations with respect to external traffic. Our current docs state that it can only be used to connect services running in GCP.  
 * I considered using a Global Load balancer to allow external traffic to services deployed in GCP K8S, but it suffers from the same problem in the **Container Native Load Balancing** example.  At this time, it doesn't appear that this approach will load balance public traffic across GKE clusters in multiple regions.  However, it does direct internal traffic across GKE clusters in multiple regions.  
+
+#### DNS Load balancer
+The [dns-load-balance-approach](dns-load-balance-approach) directory provides an example of how to configure DNS load balancing across an Nginx ingress deployed in multi-region GKE clusters.  
 
 ## GKE Multiregion Setup
 Follow the [gke-multregion-setup](gke-multiregion-setup) to configure a GKE cluster across multiple regions for testing. This will setup two GKE clusters in us-central and us-east with a sample Go app deployed to both regions. Two services will be deployed with two separate IP addresses.  Those two IP addresses can be used in Apigee Edge as target servers.  
