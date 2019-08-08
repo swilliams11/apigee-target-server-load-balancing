@@ -57,7 +57,7 @@ The most common approach to load balancing backends is to use a robust load bala
 * I tried this option in this folder, but it has some limitations with respect to external traffic. Our current docs state that it can only be used to connect services running in GCP.  
 * I considered using a Global Load balancer to allow external traffic to services deployed in GCP K8S, but it suffers from the same problem in the **Container Native Load Balancing** example.  At this time, it doesn't appear that this approach will load balance public traffic across GKE clusters in multiple regions.  However, it does direct internal traffic across GKE clusters in multiple regions.  
 
-#### DNS Load balancer
+### DNS Load Balancer Options
 The [dns-load-balance-approach](dns-load-balance-approach) directory provides an example of how to configure DNS load balancing across an Nginx ingress deployed in multi-region GKE clusters.  
 
 ## GKE Multiregion Setup
