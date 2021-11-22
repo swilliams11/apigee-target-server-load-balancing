@@ -58,7 +58,7 @@ Configure an uptime check in Stackdriver
   * Locations should be US only.  
 
 ### Stackdriver Logging
-Enter the following into the query box:
+Enter the following into the query box.  This will only pull log entries that meet this criteria. 
 ```
 resource.type="cloud_function"
 resource.labels.function_name="processLogEntry"
